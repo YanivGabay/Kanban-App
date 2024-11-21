@@ -5,26 +5,33 @@ import { Settings } from './pages/Settings'
 import { Profile } from './pages/Profile'
 import { Login } from './pages/Login'
 import { Register } from './pages/Register'
+import { Navbar } from './components/Navbar';
 
-import './App.css'
-
+import { Container, AppBar, Toolbar, CssBaseline, Box } from '@mui/material';
 function App() {
   
 
   return (
     <Router>
-      <Routes>
-        {/*home page - represent the dashboard */}
-        <Route path="/" element={<Home />} />
-        <Route path="/Settings" element= {<Settings />} />
-        {/*profile page */}
-        <Route path="/Profile" element= {<Profile />} />
-        {/*login page */}
-        <Route path="/Login" element= {<Login />} />
-        {/*register page */}
-        <Route path="/Register" element= {<Register />} />
-       
-      </Routes>
+      
+         <Navbar />
+
+
+      <Container component="main" maxWidth="lg" sx={{ mt: 2}} >
+        <Box sx={{ my: 4 }}> {/* Margin top and bottom */}
+          <Routes>
+            {/* Home page - represents the dashboard */}
+            <Route path="/" element={<Home />} />
+            <Route path="/settings" element={<Settings />} />
+            {/* Profile page */}
+            <Route path="/profile" element={<Profile />} />
+            {/* Login page */}
+            <Route path="/login" element={<Login />} />
+            {/* Register page */}
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Box>
+      </Container>
 
     </Router>
   
