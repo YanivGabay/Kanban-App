@@ -1,6 +1,20 @@
-# CONTRIBUTING
+# Yaniv Gabay - React & FastAPI & Gcp Project
 
-This file presents a few guidelines you need to follow, so that your contribution will utilize Firebase Hosting workflows and will be easy to merge with the contribution of others.
+
+
+
+## Notes
+
+to run first time the project after cloning the repo, run the following commands:
+
+```bash
+ cd my-kanban-app
+  yarn
+  yarn dev
+```
+
+
+
 
 ## Workflow
  ### GitHub Flow
