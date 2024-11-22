@@ -9,7 +9,8 @@ export const Register = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Register:', username, email, password, confirmPassword);
+    //console.log('Register:', username, email, password, confirmPassword);
+    alert('Registered with: ' + username + ' ' + email + ' ' + password + ' ' + confirmPassword);
    
   };
 
