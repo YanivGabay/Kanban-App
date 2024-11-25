@@ -9,19 +9,20 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer'
 import { Container, AppBar, Toolbar, CssBaseline, Box } from '@mui/material';
 function App() {
-  
+
 
   return (
     <Router>
-      
-         <Navbar />
+
+      <Navbar />
 
 
-      <Container component="main" maxWidth="lg" sx={{ mt: 2}} >
+      <Container component="main" maxWidth="lg" sx={{ mt: 2 }} >
         <Box sx={{ my: 4 }}> {/* Margin top and bottom */}
           <Routes>
             {/* Home page - represents the dashboard */}
             <Route path="/" element={<Home />} />
+            {/* Settings page */}
             <Route path="/settings" element={<Settings />} />
             {/* Profile page */}
             <Route path="/profile" element={<Profile />} />
@@ -32,9 +33,10 @@ function App() {
           </Routes>
         </Box>
       </Container>
-    <Footer />
+      
+      <Footer />
     </Router>
-  
+
   );
 }
 
