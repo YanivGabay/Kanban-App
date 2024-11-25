@@ -5,3 +5,10 @@ export interface BoardData {
     description: string;
   }
   
+ export interface BoardContextType {
+    boards: BoardData[];
+    addBoard: (name: string, description: string) => void;
+    editBoard: (id: number, updatedBoard: Partial<BoardData>) => void;
+    deleteBoard: (id: number) => void;
+  }
+  
