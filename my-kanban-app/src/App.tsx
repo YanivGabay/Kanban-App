@@ -10,7 +10,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Container, Box } from '@mui/material';
 import { BoardProvider } from './context/BoardContext'; // Import BoardProvider
-
+import { SERVER_URL } from './env'
 function App() {
   return (
     <Router>
