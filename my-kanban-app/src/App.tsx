@@ -14,7 +14,7 @@ import { SERVER_URL } from './env'
 function App() {
   return (
     <Router>
-      <BoardProvider> {/* Wrap your app with BoardProvider */}
+      <BoardProvider> {}
         <Navbar />
         <Container component="main" maxWidth="lg" sx={{ mt: 2 }}>
           <Box sx={{ my: 4 }}>
