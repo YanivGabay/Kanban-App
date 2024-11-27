@@ -1,0 +1,43 @@
+{
+    "home": {
+        "welcome": "ברוך הבא!"
+    },
+    "login": {
+        "title": "התחברות",
+        "username": "שם משתמש",
+        "password": "סיסמה",
+        "submit": "התחבר",
+        "forgotPassword": "שכחת סיסמה?"
+    },
+    "profile": {
+        "title": "פרופיל",
+        "editProfile": "ערוך פרופיל",
+        "logout": "התנתק"
+    },
+    "register": {
+        "title": "הרשמה",
+        "username": "שם משתמש",
+        "email": "אימייל",
+        "password": "סיסמה",
+        "confirmPassword": "אשר סיסמה",
+        "submit": "הרשם"
+    },
+    "settings": {
+        "title": "הגדרות",
+        "language": "שפה",
+        "notifications": "התראות",
+        "privacy": "פרטיות"
+    },
+    "boards-dash": {
+        "title": "הלוחות שלך",
+        "createBoard": "צור לוח",
+        "openBoard": "פתח לוח"
+    },
+    "create-board": {
+        "title": "הוסף לוח חדש",
+        "boardName": "שם הלוח",
+        "boardDescription": "תיאור הלוח",
+        "add": "הוסף",
+        "cancel": "בטל"
+    }
+}

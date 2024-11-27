@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, Container, Paper } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
 
 export const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [t, i18n] = useTranslation('global');
+
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,7 +24,7 @@ export const Register = () => {
     <Container component="main" maxWidth="xs">
       <Paper elevation={6} sx={{ marginTop: 8, padding: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography component="h1" variant="h5">
-          Sign Up
+          {t('register.title')}
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
@@ -75,7 +79,7 @@ export const Register = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
+            {t('register.submit')}
           </Button>
         </Box>
       </Paper>

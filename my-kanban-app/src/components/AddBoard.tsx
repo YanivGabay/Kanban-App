@@ -10,11 +10,15 @@ import {
   Button,
 } from '@mui/material';
 
+import { useTranslation } from 'react-i18next';
+
 const AddBoard: React.FC = () => {
   const { addBoard } = useBoards();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+
+  const [t, i18n] = useTranslation('global');
 
   const handleClose = () => {
     setOpen(false);
@@ -31,13 +35,16 @@ const AddBoard: React.FC = () => {
     }
   };
 
+
   return (
     <>
       <Button variant="outlined" color="inherit" onClick={() => setOpen(true)}>
-        Add Board
+        {t('boards-dash.createBoard')}
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add New Board</DialogTitle>
+        <DialogTitle>
+          {t('create-board.title')}
+        </DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -61,10 +68,10 @@ const AddBoard: React.FC = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="secondary">
-            Cancel
+            {t('create-board.cancel')}
           </Button>
           <Button onClick={handleAdd} color="primary">
-            Add
+            {t('create-board.add')}
           </Button>
         </DialogActions>
       </Dialog>

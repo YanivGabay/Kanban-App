@@ -5,12 +5,15 @@ import { BoardData } from '../types/board'; // Adjust path as needed
 import { useBoards } from '../context/BoardContext';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ConfirmDialog from './ConfirmDialog';
+import { useTranslation } from 'react-i18next';
+
 interface BoardProps {
   board: BoardData;
 }
 
 const Board: React.FC<BoardProps> = ({ board }) => {
 
+  const [t, i18n] = useTranslation('global');
   const { deleteBoard } = useBoards();
   const [confirmOpen, setConfirmOpen] = React.useState(false);
 
@@ -37,7 +40,9 @@ const Board: React.FC<BoardProps> = ({ board }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => console.log("Open Board")}>Open Board</Button>
+        <Button size="small" onClick={() => console.log("Open Board")}>
+          {t('boards-dash.openBoard')}
+        </Button>
         <IconButton color="secondary" onClick={handleDelete}>
             <DeleteIcon />
           </IconButton>

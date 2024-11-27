@@ -1,0 +1,46 @@
+
+{
+    "home": {
+        "welcome": "Welcome!"
+      
+    },
+    "login": {
+        "title": "Sign in",
+        "username": "Username",
+        "password": "Password",
+        "submit": "Sign In",
+        "forgotPassword": "Forgot Password?"
+    },
+    "profile": {
+        "title": "Profile",
+        "editProfile": "Edit Profile",
+        "logout": "Logout"
+    },
+    "register": {
+        "title": "Sign Up",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "submit": "Sign Up"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "notifications": "Notifications",
+        "privacy": "Privacy"
+    },
+    "boards-dash":{
+        "title": "Your Boards",
+        "createBoard": "Create Board",
+        "openBoard": "Open Board"
+    },
+    "create-board": {
+        "title": "Add New Board",
+        "boardName": "Board Name",
+        "boardDescription": "Board Description",
+        "add": "Add",
+        "cancel": "Cancel"
+    }
+
+}
