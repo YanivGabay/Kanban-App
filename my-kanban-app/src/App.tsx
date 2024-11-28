@@ -11,8 +11,12 @@ import { Footer } from './components/Footer';
 import { Container, Box } from '@mui/material';
 import { BoardProvider } from './context/BoardContext'; // Import BoardProvider
 import { SERVER_URL } from './env'
+import { CustomThemeProvider } from './context/ThemeContext';
+
+
 function App() {
   return (
+   <CustomThemeProvider>
     <Router>
       <BoardProvider> {}
         <Navbar />
@@ -30,6 +34,8 @@ function App() {
         <Footer />
       </BoardProvider>
     </Router>
+    </CustomThemeProvider>
+  
   );
 }
 
