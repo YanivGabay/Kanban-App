@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCustomTheme } from '../context/ThemeContext';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Paper } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -20,6 +20,7 @@ export const Settings = () => {
   return (
 
     <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ p: 2 }}>
       <Box sx={{ mt: 4 }}>
         <Typography variant="h4" gutterBottom>
           {t('settings.title')}
@@ -39,6 +40,7 @@ export const Settings = () => {
           <MenuItem value="heb">עברית</MenuItem>
         </Select>
       </Box>
+      </Paper>
     </Container>
 
 
