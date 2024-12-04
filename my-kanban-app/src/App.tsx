@@ -18,7 +18,7 @@ function App() {
   return (
    <CustomThemeProvider>
     <Router>
-      <BoardProvider> {}
+      <BoardProvider> 
         <Navbar />
         <Container component="main" maxWidth="lg" sx={{ mt: 2 }}>
           <Box sx={{ my: 4 }}>
