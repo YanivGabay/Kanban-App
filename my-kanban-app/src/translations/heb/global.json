@@ -39,5 +39,15 @@
         "boardDescription": "תיאור הלוח",
         "add": "הוסף",
         "cancel": "בטל"
+    },
+    "nav-bar": {
+        "appTitle": "האפליקציה שלי",
+        "home": "בית",
+        "boards": "לוחות",
+        "profile": "פרופיל",
+        "settings": "הגדרות",
+        "login": "התחבר",
+        "register": "הרשם",
+        "logout": "התנתק"
     }
 }

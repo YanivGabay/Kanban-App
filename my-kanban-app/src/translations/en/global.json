@@ -41,6 +41,17 @@
         "boardDescription": "Board Description",
         "add": "Add",
         "cancel": "Cancel"
+    },
+    "nav-bar": {
+        "appTitle": "My Kanban App",
+        "home": "Home",
+        "boards": "Boards",
+        "profile": "Profile",
+        "settings": "Settings",
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout"
     }
+ 
 
 }
