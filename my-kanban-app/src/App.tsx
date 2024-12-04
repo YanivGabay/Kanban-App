@@ -10,32 +10,72 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Container, Box } from '@mui/material';
 import { BoardProvider } from './context/BoardContext'; // Import BoardProvider
-import { SERVER_URL } from './env'
 import { CustomThemeProvider } from './context/ThemeContext';
-
+import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
+import PrivateRoute from './components/routes/PrivateRoute';
+import PublicRoute from './components/routes/PublicRoute';
 
 function App() {
   return (
-   <CustomThemeProvider>
-    <Router>
-      <BoardProvider> 
-        <Navbar />
-        <Container component="main" maxWidth="lg" sx={{ mt: 2 }}>
-          <Box sx={{ my: 4 }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Routes>
-          </Box>
-        </Container>
-        <Footer />
-      </BoardProvider>
-    </Router>
+    <CustomThemeProvider>
+      <Router>
+        <AuthProvider> {/* Wrap with AuthProvider */}
+          <BoardProvider> 
+            <Navbar />
+            <Container component="main" maxWidth="lg" sx={{ mt: 2 }}>
+              <Box sx={{ my: 4 }}>
+                <Routes>
+                  {/* Protected Routes */}
+                  <Route
+                    path="/"
+                    element={
+                      <PrivateRoute>
+                        <Home />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/settings"
+                    element={
+                      <PrivateRoute>
+                        <Settings />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <PrivateRoute>
+                        <Profile />
+                      </PrivateRoute>
+                    }
+                  />
+
+                  {/* Public Routes */}
+                  <Route
+                    path="/login"
+                    element={
+                      <PublicRoute>
+                        <Login />
+                      </PublicRoute>
+                    }
+                  />
+                  <Route
+                    path="/register"
+                    element={
+                      <PublicRoute>
+                        <Register />
+                      </PublicRoute>
+                    }
+                  />
+                </Routes>
+              </Box>
+            </Container>
+            <Footer />
+          </BoardProvider>
+        </AuthProvider>
+      </Router>
     </CustomThemeProvider>
-  
   );
 }
 
