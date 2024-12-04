@@ -5,6 +5,7 @@
     "login": {
         "title": "התחברות",
         "username": "שם משתמש",
+        "email": "אימייל",
         "password": "סיסמה",
         "submit": "התחבר",
         "forgotPassword": "שכחת סיסמה?"

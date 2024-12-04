@@ -7,6 +7,7 @@
     "login": {
         "title": "Sign in",
         "username": "Username",
+        "email": "Email",
         "password": "Password",
         "submit": "Sign In",
         "forgotPassword": "Forgot Password?"
