@@ -5,6 +5,7 @@ import { Home } from './pages/Home';
 import { Settings } from './pages/Settings';
 import { Profile } from './pages/Profile';
 import { Login } from './pages/Login';
+import { Dashboard } from './pages/Dashboard';
 import { Register } from './pages/Register';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -47,6 +48,14 @@ function App() {
                     element={
                       <PrivateRoute>
                         <Profile />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/dashboard/:boardId"
+                    element={
+                      <PrivateRoute>
+                        <Dashboard />
                       </PrivateRoute>
                     }
                   />
