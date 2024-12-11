@@ -50,5 +50,12 @@
         "login": "התחבר",
         "register": "הרשם",
         "logout": "התנתק"
+    },
+    "del-dialog": {
+        
+        "del-title": "מחק",
+        "message": "האם אתה בטוח שברצונך למחוק פריט זה?",
+        "cancel": "ביטול",
+        "confirm": "אישור"
     }
 }

@@ -55,8 +55,8 @@ const Board: React.FC<BoardProps> = ({ board }) => {
 
      <ConfirmDialog
         open={confirmOpen}
-        title="Delete Board"
-        content={`Are you sure you want to delete "${board.name}"? This action cannot be undone.`}
+        title={t('del-dialog.del-title')}
+        content={t('del-dialog.message')}
         onClose={handleConfirmClose}
       />
       </>
