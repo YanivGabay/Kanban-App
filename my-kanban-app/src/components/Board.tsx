@@ -6,13 +6,13 @@ import { useBoards } from '../context/BoardContext';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ConfirmDialog from './ConfirmDialog';
 import { useTranslation } from 'react-i18next';
-
+import { useNavigate } from 'react-router-dom';
 interface BoardProps {
   board: BoardData;
 }
 
 const Board: React.FC<BoardProps> = ({ board }) => {
-
+  const navigate = useNavigate();
   const [t, i18n] = useTranslation('global');
   const { deleteBoard } = useBoards();
   const [confirmOpen, setConfirmOpen] = React.useState(false);
@@ -20,6 +20,10 @@ const Board: React.FC<BoardProps> = ({ board }) => {
   const handleDelete = () => {
     setConfirmOpen(true);
   };
+
+  const handleOpenBoard = () => {
+    navigate(`/dashboard/${board.id}`);
+  }
 
   const handleConfirmClose = (confirmed: boolean) => {
     setConfirmOpen(false);
@@ -40,7 +44,7 @@ const Board: React.FC<BoardProps> = ({ board }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={() => console.log("Open Board")}>
+        <Button size="small" onClick={handleOpenBoard}>
           {t('boards-dash.openBoard')}
         </Button>
         <IconButton color="secondary" onClick={handleDelete}>
