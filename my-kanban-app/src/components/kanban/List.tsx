@@ -20,6 +20,9 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useBoards } from '../../context/BoardContext';
+import Card from './Card';
+import AddCard from './AddCard';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 interface ListProps {
   list: ListData;
@@ -217,15 +220,34 @@ const List: React.FC<ListProps> = ({ list, boardId, setDraggingEnabled, isDraggi
             </MenuItem>
           </Menu>
         </Box>
-        <Box
-          sx={{
-            minHeight: 30,
-            maxHeight: 'calc(100vh - 290px)',
-            overflowY: 'auto'
-          }}
+        <SortableContext
+          items={list.cards.map(card => `card-${card.id}`)}
+          strategy={verticalListSortingStrategy}
+          id={list.id.toString()}
         >
-          {/* Cards will be added here */}
-        </Box>
+          <Box
+            sx={{
+              minHeight: 30,
+              maxHeight: 'calc(100vh - 290px)',
+              overflowY: 'auto'
+            }}
+          >
+            {list.cards.map((card) => (
+              <Card 
+                key={card.id} 
+                card={card}
+                listId={list.id}
+                boardId={boardId}
+                setDraggingEnabled={setDraggingEnabled}
+              />
+            ))}
+            <AddCard 
+              listId={list.id}
+              boardId={boardId}
+              setDraggingEnabled={setDraggingEnabled}
+            />
+          </Box>
+        </SortableContext>
       </Paper>
 
       {/* Delete Confirmation Dialog */}

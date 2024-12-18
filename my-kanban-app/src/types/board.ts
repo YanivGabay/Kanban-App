@@ -11,8 +11,9 @@ export interface ListData {
   export interface CardData {
     id: number;
     title: string;
-    description: string;
-    // we might add more fields here
+    description?: string;
+    order: number;
+    listId: number;
   }
 
 export interface BoardData {
@@ -31,5 +32,7 @@ export interface BoardData {
     addCard: (boardId: number, listId: number, cardTitle: string, cardDescription: string) => void;
     deleteList: (boardId: number, listId: number) => void;
     editList: (boardId: number, listId: number, newTitle: string) => void;
+    editCard: (boardId: number, listId: number, cardId: number, updates: Partial<CardData>) => void;
+    deleteCard: (boardId: number, listId: number, cardId: number) => void;
   }
   

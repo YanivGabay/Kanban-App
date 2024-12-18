@@ -1,6 +1,6 @@
 // src/context/BoardContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { BoardData, BoardContextType } from '../types/board';
+import { BoardData, BoardContextType, CardData } from '../types/board';
 
 // Initialize with a default value matching BoardContextType
 const BoardContext = createContext<BoardContextType>({
@@ -12,6 +12,8 @@ const BoardContext = createContext<BoardContextType>({
   addCard: () => {},
   deleteList: () => {},
   editList: () => {},
+  editCard: () => {},
+  deleteCard: () => {},
 });
 
 export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -83,23 +85,25 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setBoards(prevBoards => {
       return prevBoards.map(board => {
         if (board.id === boardId) {
-          const newLists = board.lists.map(list => {
-            if (list.id === listId) {
-              return {
-                ...list,
-                cards: [
-                  ...list.cards,
-                  {
-                    id: Date.now(),
-                    title: cardTitle,
-                    description: cardDescription
-                  }
-                ]
-              };
-            }
-            return list;
-          });
-          return { ...board, lists: newLists };
+          return {
+            ...board,
+            lists: board.lists.map(list => {
+              if (list.id === listId) {
+                const newCard: CardData = {
+                  id: Date.now(),
+                  title: cardTitle,
+                  description: cardDescription,
+                  order: list.cards.length,
+                  listId: list.id
+                };
+                return {
+                  ...list,
+                  cards: [...list.cards, newCard]
+                };
+              }
+              return list;
+            })
+          };
         }
         return board;
       });
@@ -136,6 +140,52 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
   };
 
+  const editCard = (boardId: number, listId: number, cardId: number, updates: Partial<CardData>) => {
+    setBoards(prevBoards => {
+      return prevBoards.map(board => {
+        if (board.id === boardId) {
+          return {
+            ...board,
+            lists: board.lists.map(list => {
+              if (list.id === listId) {
+                return {
+                  ...list,
+                  cards: list.cards.map(card => 
+                    card.id === cardId ? { ...card, ...updates } : card
+                  )
+                };
+              }
+              return list;
+            })
+          };
+        }
+        return board;
+      });
+    });
+  };
+
+  const deleteCard = (boardId: number, listId: number, cardId: number) => {
+    setBoards(prevBoards => {
+      return prevBoards.map(board => {
+        if (board.id === boardId) {
+          return {
+            ...board,
+            lists: board.lists.map(list => {
+              if (list.id === listId) {
+                return {
+                  ...list,
+                  cards: list.cards.filter(card => card.id !== cardId)
+                };
+              }
+              return list;
+            })
+          };
+        }
+        return board;
+      });
+    });
+  };
+
   const value: BoardContextType = {
     boards,
     addBoard,
@@ -144,7 +194,9 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     addList,
     addCard,
     deleteList,
-    editList
+    editList,
+    editCard,
+    deleteCard
   };
 
   return (
