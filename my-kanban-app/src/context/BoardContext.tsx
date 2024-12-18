@@ -11,16 +11,31 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   // Initialize boards with some data
   useEffect(() => {
     const initialBoards: BoardData[] = [
-      { id: 1, name: 'Project Alpha', description: 'Initial phase management.' },
-      { id: 2, name: 'Project Beta', description: 'Development phase tasks.' },
-      { id: 3, name: 'Project Gamma', description: 'Testing and deployment tasks.' },
+      { 
+        id: 1, 
+        name: 'Project Alpha', 
+        description: 'Initial phase management.',
+        lists: [] 
+      },
+      { 
+        id: 2, 
+        name: 'Project Beta', 
+        description: 'Development phase tasks.',
+        lists: [] 
+      },
+      { 
+        id: 3, 
+        name: 'Project Gamma', 
+        description: 'Testing and deployment tasks.',
+        lists: [] 
+      },
     ];
     setBoards(initialBoards);
   }, []);
 
   const addBoard = (name: string, description: string) => {
     const newId = boards.length > 0 ? Math.max(...boards.map((board) => board.id)) + 1 : 1;
-    const newBoard = { id: newId, name, description };
+    const newBoard = { id: newId, name, description, lists: [] };
     setBoards((prevBoards) => [...prevBoards, newBoard]);
   };
 
@@ -34,8 +49,66 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setBoards((prevBoards) => prevBoards.filter((board) => board.id !== id));
   };
 
+  const addList = (boardId: number, listName: string) => {
+    setBoards(prevBoards => {
+      return prevBoards.map(board => {
+        if (board.id === boardId) {
+          return {
+            ...board,
+            lists: [
+              ...board.lists,
+              {
+                id: Date.now(), // Simple way to generate unique id
+                name: listName,
+                title: listName,
+                cards: []
+              }
+            ]
+          };
+        }
+        return board;
+      });
+    });
+  };
+
+  const addCard = (boardId: number, listId: number, cardTitle: string, cardDescription: string) => {
+    setBoards(prevBoards => {
+      return prevBoards.map(board => {
+        if (board.id === boardId) {
+          const newLists = board.lists.map(list => {
+            if (list.id === listId) {
+              return {
+                ...list,
+                cards: [
+                  ...list.cards,
+                  {
+                    id: Date.now(),
+                    title: cardTitle,
+                    description: cardDescription
+                  }
+                ]
+              };
+            }
+            return list;
+          });
+          return { ...board, lists: newLists };
+        }
+        return board;
+      });
+    });
+  };
+
+  const value = {
+    boards,
+    addBoard,
+    editBoard,
+    deleteBoard,
+    addList,
+    addCard
+  };
+
   return (
-    <BoardContext.Provider value={{ boards, addBoard, editBoard, deleteBoard }}>
+    <BoardContext.Provider value={value}>
       {children}
     </BoardContext.Provider>
   );
@@ -43,7 +116,7 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
 export const useBoards = () => {
   const context = useContext(BoardContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useBoards must be used within a BoardProvider');
   }
   return context;

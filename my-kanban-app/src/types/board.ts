@@ -5,6 +5,7 @@ export interface ListData {
     id: number;
     name: string;
     cards: CardData[];
+    title: string;  
   }
   
   export interface CardData {

@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 //import KanbanWrapper from '../components/KanbanWrapper';
 import { useBoards } from '../context/BoardContext';
 import { Typography, Container, Box } from '@mui/material';
+import KanbanWrapper from '../components/kanban/KanbanWrapper';
+
+
 export const Dashboard = () => {
 
 
@@ -29,7 +32,7 @@ export const Dashboard = () => {
           <Typography variant="subtitle1" gutterBottom>
             {board.description}
           </Typography>
-          {/* <KanbanWrapper board={board} /> */} 
+          { <KanbanWrapper board={board} />} 
         </Container>
       );
 }
