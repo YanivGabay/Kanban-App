@@ -1,14 +1,22 @@
 // src/context/BoardContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { BoardData } from '../types/board';
-import { BoardContextType } from '../types/board';
+import { BoardData, BoardContextType } from '../types/board';
 
-const BoardContext = createContext<BoardContextType | undefined>(undefined);
+// Initialize with a default value matching BoardContextType
+const BoardContext = createContext<BoardContextType>({
+  boards: [],
+  addBoard: () => {},
+  editBoard: () => {},
+  deleteBoard: () => {},
+  addList: () => {},
+  addCard: () => {},
+  deleteList: () => {},
+  editList: () => {},
+});
 
 export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [boards, setBoards] = useState<BoardData[]>([]);
 
-  // Initialize boards with some data
   useEffect(() => {
     const initialBoards: BoardData[] = [
       { 
@@ -98,13 +106,45 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
   };
 
-  const value = {
+  const deleteList = (boardId: number, listId: number) => {
+    setBoards(prevBoards => {
+      return prevBoards.map(board => {
+        if (board.id === boardId) {
+          return {
+            ...board,
+            lists: board.lists.filter(list => list.id !== listId)
+          };
+        }
+        return board;
+      });
+    });
+  };
+
+  const editList = (boardId: number, listId: number, newTitle: string) => {
+    setBoards(prevBoards => {
+      return prevBoards.map(board => {
+        if (board.id === boardId) {
+          return {
+            ...board,
+            lists: board.lists.map(list => 
+              list.id === listId ? { ...list, title: newTitle } : list
+            )
+          };
+        }
+        return board;
+      });
+    });
+  };
+
+  const value: BoardContextType = {
     boards,
     addBoard,
     editBoard,
     deleteBoard,
     addList,
-    addCard
+    addCard,
+    deleteList,
+    editList
   };
 
   return (
@@ -116,7 +156,7 @@ export const BoardProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
 export const useBoards = () => {
   const context = useContext(BoardContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useBoards must be used within a BoardProvider');
   }
   return context;

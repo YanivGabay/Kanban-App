@@ -1,5 +1,5 @@
 // src/components/KanbanBoard.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import List from './List';
 import AddNewList from './AddNewList';
@@ -14,8 +14,14 @@ interface KanbanBoardProps {
 
 const KanbanBoard: React.FC<KanbanBoardProps> = ({ board }) => {
   const { editBoard } = useBoards();
+  const [isDraggingEnabled, setIsDraggingEnabled] = useState(true);
+  
   const sensors = useSensors(
-    useSensor(MouseSensor),
+    useSensor(MouseSensor, {
+      activationConstraint: {
+        distance: 10,
+      },
+    }),
     useSensor(TouchSensor)
   );
 
@@ -24,7 +30,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ board }) => {
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
 
-    if (active.id !== over?.id) {
+    if (active.id !== over?.id && over) {
       const oldIndex = lists.findIndex(list => list.id === active.id);
       const newIndex = lists.findIndex(list => list.id === over.id);
 
@@ -49,7 +55,13 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({ board }) => {
       >
         <Box display="flex" overflow="auto">
           {lists.map(list => (
-            <List key={list.id} list={list} boardId={board.id} />
+            <List 
+              key={list.id} 
+              list={list} 
+              boardId={board.id}
+              setDraggingEnabled={setIsDraggingEnabled}
+              isDraggingEnabled={isDraggingEnabled}
+            />
           ))}
           <AddNewList boardId={board.id} />
         </Box>

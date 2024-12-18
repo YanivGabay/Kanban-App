@@ -29,6 +29,7 @@ export interface BoardData {
     deleteBoard: (id: number) => void;
     addList: (boardId: number, listName: string) => void;
     addCard: (boardId: number, listId: number, cardTitle: string, cardDescription: string) => void;
-    //need to add: editList, deleteList, editCard, deleteCard
+    deleteList: (boardId: number, listId: number) => void;
+    editList: (boardId: number, listId: number, newTitle: string) => void;
   }
   
