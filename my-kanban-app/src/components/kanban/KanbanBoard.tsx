@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import { Box, Paper, Typography } from '@mui/material';
 import List from './List';
 import AddNewList from './AddNewList';
-import { DndContext, closestCenter, MouseSensor, TouchSensor, useSensor, useSensors, DragEndEvent, DragStartEvent, DragOverlay, restrictToWindowEdges } from '@dnd-kit/core';
+import { DndContext, closestCenter, MouseSensor, TouchSensor, useSensor, useSensors, DragEndEvent, DragStartEvent, DragOverlay } from '@dnd-kit/core';
 import { SortableContext, horizontalListSortingStrategy, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { BoardData } from '../../types/board';
 import { useBoards } from '../../context/BoardContext';
+
+
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 
 interface KanbanBoardProps {
   board: BoardData;
